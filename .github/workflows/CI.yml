@@ -42,11 +42,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-      
-      - name: Install openssl
-        run: |
-          sudo apt update
-          sudo apt install -y libssl-dev pkg-config
 
       - name: Check openssl
         run: |
@@ -61,7 +56,7 @@ jobs:
           args: --release --out dist --find-interpreter
           sccache: 'true'
           manylinux: auto
-          before-script-linux: apt-get install -y libssl-dev pkg-config
+          before-script-linux: yum install perl-IPC-Cmd
 
       - name: Upload wheels
         uses: actions/upload-artifact@v4
